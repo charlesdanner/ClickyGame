@@ -4,7 +4,7 @@ import "./style.css";
 
 function Card(props) {
     return (
-        <div className="imageContainer d-inline">
+        <div className=" btn imageContainer d-inline">
             <img alt={props.name}
                 src={props.image}
                 onClick={() => props.checkIfClicked(props.guessed, props.id)}

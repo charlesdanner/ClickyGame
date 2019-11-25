@@ -1,0 +1,27 @@
+.scoreBoardContainer {
+    width: 100%;
+    z-index: 100
+  }
+
+.brandDiv {
+    background-color: green;
+    width: 20%
+}
+
+.messageText {
+    width: 33%;
+    background-color: blue;
+}
+
+.scoreBoard {
+    width: 20%;
+    background-color: orange;
+}
+
+.scoreBoardText {
+    min-width: 150px
+}
+
+.jumbotron {
+    padding: 0;
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
 import Wrapper from './components/Wrapper';
-import Header from './components/Header';
 import Jumbotron from './components/Jumbotron';
 import gang from './gang.json';
 import CardContainer from './components/CardContainer';
@@ -11,6 +10,7 @@ class App extends React.Component {
   state = {
     score: 0,
     best: 0,
+    message: "Click an image to begin",
     gang
   }
 
@@ -20,24 +20,26 @@ class App extends React.Component {
       else return x
     }
 
+    const shuffledGang = gang => {
+      const shuffled = gang.map(a => [Math.random(), a])
+        .sort((a, b) => a[0] - b[0])
+        .map(a => a[1]);
+      return shuffled
+    }
+
     if (guessed) {
       const gang = this.state.gang.map(member => {
         return {
           id: member.id,
-          name: member.name,
           image: member.image,
           guessed: false
         }
       })
 
-      const shuffledGang = gang
-      .map(a => [Math.random(), a])
-      .sort((a, b) => a[0] - b[0])
-      .map(a => a[1]);
-
       this.setState({
         score: 0,
-        gang: shuffledGang
+        message: "INCORRECT!",
+        gang: shuffledGang(gang)
       })
 
     } else {
@@ -46,71 +48,46 @@ class App extends React.Component {
         if (member.id !== id) {
           return {
             id: member.id,
-            name: member.name,
             image: member.image,
             guessed: member.guessed
           }
         } else return {
           id: member.id,
-          name: member.name,
           image: member.image,
           guessed: true
         }
       })
-
-      const shuffledGang = gang
-        .map(a => [Math.random(), a])
-        .sort((a, b) => a[0] - b[0])
-        .map(a => a[1]);
-
       this.setState({
         score: this.state.score + 1,
         best: compareScore(this.state.best, this.state.score),
-        gang: shuffledGang
+        message: "CORRECT!",
+        gang: shuffledGang(gang)
 
       })
-      if (this.state.score > this.state.best) {
-        this.setState({ best: this.state.best + 1 })
-      }
     }
   }
 
   render() {
     return (
       <Wrapper>
-        <Header
+        <Jumbotron
           score={this.state.score}
           best={this.state.best}
-        />
-        <Jumbotron />
-
+          message={this.state.message} />
         <CardContainer>
           {this.state.gang.map(member => (
             <Card
               checkIfClicked={this.checkIfClicked}
               id={member.id}
               key={member.id}
-              name={member.name}
               image={member.image}
               guessed={member.guessed}
             />
           ))}
-
         </CardContainer>
-
-
-
-
-
-
-
-
-
-
       </Wrapper>
     );
   }
-
 }
 
 export default App;
