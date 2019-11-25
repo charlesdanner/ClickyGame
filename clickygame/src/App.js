@@ -20,13 +20,6 @@ class App extends React.Component {
       else return x
     }
 
-    const shuffleOrder = (inputArr) => {
-      inputArr
-        .map(a => [Math.random(), a])
-        .sort((a, b) => a[0] - b[0])
-        .map(a => a[1]);
-
-    }
     if (guessed) {
       const gang = this.state.gang.map(member => {
         return {
@@ -37,9 +30,14 @@ class App extends React.Component {
         }
       })
 
+      const shuffledGang = gang
+      .map(a => [Math.random(), a])
+      .sort((a, b) => a[0] - b[0])
+      .map(a => a[1]);
+
       this.setState({
         score: 0,
-        gang: gang 
+        gang: shuffledGang
       })
 
     } else {
@@ -60,20 +58,22 @@ class App extends React.Component {
         }
       })
 
+      const shuffledGang = gang
+        .map(a => [Math.random(), a])
+        .sort((a, b) => a[0] - b[0])
+        .map(a => a[1]);
+
       this.setState({
         score: this.state.score + 1,
         best: compareScore(this.state.best, this.state.score),
-        gang: gang
+        gang: shuffledGang
 
       })
-      console.log(this.state.score)
       if (this.state.score > this.state.best) {
         this.setState({ best: this.state.best + 1 })
       }
     }
   }
-
-
 
   render() {
     return (
