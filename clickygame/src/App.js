@@ -16,7 +16,7 @@ class App extends React.Component {
 
   checkIfClicked = (guessed, id) => {
     const compareScore = (x, y) => {
-      if( x === y) return x + 1
+      if (x === y) return x + 1
       else return x
     }
 
@@ -31,32 +31,36 @@ class App extends React.Component {
       const gang = this.state.gang.map(member => {
         return {
           id: member.id,
-            name: member.name,
-            image: member.image,
-            guessed: false
+          name: member.name,
+          image: member.image,
+          guessed: false
         }
       })
-      
-      this.setState({ score: 0 }, { gang })
+
+      this.setState({
+        score: 0,
+        gang: gang 
+      })
 
     } else {
 
       const gang = this.state.gang.map(member => {
-        if(member.id !== id) {
+        if (member.id !== id) {
           return {
             id: member.id,
             name: member.name,
             image: member.image,
             guessed: member.guessed
-          }} else return {
-            id: member.id,
-            name: member.name,
-            image: member.image,
-            guessed: true
+          }
+        } else return {
+          id: member.id,
+          name: member.name,
+          image: member.image,
+          guessed: true
         }
       })
 
-      this.setState({ 
+      this.setState({
         score: this.state.score + 1,
         best: compareScore(this.state.best, this.state.score),
         gang: gang
