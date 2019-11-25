@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   checkIfClicked = (guessed, id) => {
-    const compareScore = (x, y) => {
+    const updateBestScore = (x, y) => {
       if (x === y) return x + 1
       else return x
     }
@@ -27,6 +27,16 @@ class App extends React.Component {
       return shuffled
     }
 
+    const setTheState = (score, best, message, gang) => {
+      this.setState({
+        score: score,
+        best: best,
+        message: message,
+        gang: shuffledGang(gang)
+
+      })
+    }
+
     if (guessed) {
       const gang = this.state.gang.map(member => {
         return {
@@ -36,12 +46,12 @@ class App extends React.Component {
         }
       })
 
-      this.setState({
-        score: 0,
-        message: "INCORRECT!",
-        gang: shuffledGang(gang)
-      })
-
+      setTheState(0, 
+        this.state.best,
+        "INCORRECT",
+        shuffledGang(gang)
+      );
+        
     } else {
 
       const gang = this.state.gang.map(member => {
@@ -56,16 +66,16 @@ class App extends React.Component {
           image: member.image,
           guessed: true
         }
-      })
-      this.setState({
-        score: this.state.score + 1,
-        best: compareScore(this.state.best, this.state.score),
-        message: "CORRECT!",
-        gang: shuffledGang(gang)
+      });  
 
-      })
-    }
-  }
+      setTheState(
+        (this.state.score + 1),
+        updateBestScore(this.state.best,
+          this.state.score), "CORRECT",
+        shuffledGang(gang)
+      );
+    };
+  };
 
   render() {
     return (
