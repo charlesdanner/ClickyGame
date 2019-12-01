@@ -1,27 +1,36 @@
 .scoreBoardContainer {
     width: 100%;
     z-index: 100
-  }
-
-.brandDiv {
-    background-color: green;
-    width: 20%
 }
 
-.messageText {
-    width: 33%;
-    background-color: blue;
+.bg-grey {
+    background-color: #333;
+    color: #fff;
 }
 
-.scoreBoard {
+.jumbotron-content-container{
+    margin: auto;
+    max-width: 900px;
+    height: 100%;
+}
+
+hr {
+    border: 1px solid #fff;
+    width: 100%
+}
+
+#scoreBoard {
     width: 20%;
-    background-color: orange;
 }
 
 .scoreBoardText {
-    min-width: 150px
+    min-width: 150px;
 }
 
 .jumbotron {
     padding: 0;
+    background: none;
+    background-color: black;
+    opacity: 90%;
+    color: white;
 }

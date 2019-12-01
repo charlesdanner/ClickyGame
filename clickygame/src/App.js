@@ -15,6 +15,7 @@ class App extends React.Component {
   }
 
   checkIfClicked = (guessed, id) => {
+   const messageElement = document.getElementById("message")
     const updateBestScore = (x, y) => {
       if (x === y) return x + 1
       else return x
@@ -51,6 +52,8 @@ class App extends React.Component {
         "INCORRECT",
         shuffledGang(gang)
       );
+
+      messageElement.style.color = "red";
         
     } else {
 
@@ -74,6 +77,7 @@ class App extends React.Component {
           this.state.score), "CORRECT",
         shuffledGang(gang)
       );
+      messageElement.style.color = "green";
     };
   };
 

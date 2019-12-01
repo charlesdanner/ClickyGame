@@ -1,4 +1,6 @@
 .wrapper {
     margin: auto;
     z-index: 50;
+    background-image: url(https://images6.alphacoders.com/679/679563.jpg);
+    background-size: 1500px 775px;
 }
