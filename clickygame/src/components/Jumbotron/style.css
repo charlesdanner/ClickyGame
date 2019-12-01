@@ -31,6 +31,6 @@ hr {
     padding: 0;
     background: none;
     background-color: black;
-    opacity: 80%;
+    /* opacity: 80%; */
     color: white;
 }
