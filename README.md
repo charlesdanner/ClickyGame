@@ -1,4 +1,4 @@
-# Clicky Game - [It's Always Sunny in Philadelphia themed]https://charlesdanner.github.io/ClickyGame/)
+# Clicky Game - [It's Always Sunny in Philadelphia themed](https://charlesdanner.github.io/ClickyGame/)
 
 ## Introduction
  A front end application that uses the React library in order to render the contents of the page, update the state of the application, and take advantage of unilateral data flow to update stateless components. 
